@@ -4,7 +4,7 @@
     <h1 class="text-2xl mb-1">
         Busque um Evento
     </h1>
-    <input type="text" name="evento" class="w-[100%] border border-gray rounded-md p-1 outline-none focus:border-gray-700 mb-1">
+    <input type="text" name="search" class="w-[100%] border border-gray rounded-md p-2 outline-none focus:border-gray-700 mb-1">
     <div class="mb-1">
         <h1 class="text-2xl">
             Proximos eventos
