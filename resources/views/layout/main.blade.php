@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{str_replace('_','-', app()->getLocale())}}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
 <header>
     <nav class="p-5 flex justify-between items-center bg-gray-700 text-white border-b border-gray-200">
         <a class="text-3xl leading-none" href="/">
@@ -21,10 +21,12 @@
             </button>
         </div>
         <ul class="hidden md:flex">
-            <li><a class="text-gray-400 hover:text-blue-500 pe-3" href="/">Eventos</a></li>
-            <li><a class="text-gray-400 hover:text-blue-500 pe-3" href="/events/create">Criar Eventos</a></li>
-            <li><a class="text-gray-400 hover:text-blue-500 pe-3" href="#">Entrar</a></li>
-            <li><a class="text-gray-400 hover:text-blue-500 pe-3" href="#">Cadastrar</a></li>
+            <ul class="hidden md:flex">
+                <li class="px-4"><a class="text-gray-400 hover:text-blue-500" href="/">Eventos</a></li>
+                <li class="px-4"><a class="text-gray-400 hover:text-blue-500" href="/events/create">Criar Eventos</a></li>
+                <li class="px-4"><a class="text-gray-400 hover:text-blue-500" href="#">Entrar</a></li>
+                <li class="px-4"><a class="text-gray-400 hover:text-blue-500" href="#">Cadastrar</a></li>
+            </ul>
         </ul>
     </nav>
     <div class="navbar-menu relative z-50 hidden">
@@ -64,59 +66,28 @@
                 </ul>
             </div>
         </nav>
+    </div>
 </header>
-<main class="p-5">
+@if(session('msg'))
+    <div class="w-full bg-green-200 text-green-500 p-3 flex justify-between items-center " id="msg-success">
+       <div>
+           {{ session('msg') }}
+       </div>
+        <div class="flex ps-[300px]">
+            <button onclick="closeBox('msg-success')">X</button>
+        </div>
+    </div>
+@endif
+<main class="p-5 flex-1">
     @yield('content')
 </main>
-<footer class="text-center bg-gray-700 text-white py-3 absolute bottom-0 w-full">
-    <div class="rounded-t-lg">
+
+<footer class="text-center bg-gray-700 text-white py-3">
+    <div class="container mx-auto">
         <p class="mb-0">Agenda de eventos &copy; 2024</p>
     </div>
 </footer>
 
-</div>
+<script src="js/script.js"></script>
 </body>
-
-<script>
-    // Burger menus
-    document.addEventListener('DOMContentLoaded', function () {
-        // open
-        const burger = document.querySelectorAll('.navbar-burger');
-        const menu = document.querySelectorAll('.navbar-menu');
-
-        if (burger.length && menu.length) {
-            for (var i = 0; i < burger.length; i++) {
-                burger[i].addEventListener('click', function () {
-                    for (var j = 0; j < menu.length; j++) {
-                        menu[j].classList.toggle('hidden');
-                    }
-                });
-            }
-        }
-
-        // close
-        const close = document.querySelectorAll('.navbar-close');
-        const backdrop = document.querySelectorAll('.navbar-backdrop');
-
-        if (close.length) {
-            for (var i = 0; i < close.length; i++) {
-                close[i].addEventListener('click', function () {
-                    for (var j = 0; j < menu.length; j++) {
-                        menu[j].classList.toggle('hidden');
-                    }
-                });
-            }
-        }
-
-        if (backdrop.length) {
-            for (var i = 0; i < backdrop.length; i++) {
-                backdrop[i].addEventListener('click', function () {
-                    for (var j = 0; j < menu.length; j++) {
-                        menu[j].classList.toggle('hidden');
-                    }
-                });
-            }
-        }
-    });
-</script>
 </html>
