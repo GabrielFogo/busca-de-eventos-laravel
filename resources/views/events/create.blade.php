@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layouts.main')
 @section('title', 'Agenda de Eventos')
 @section('content')
     <div class="w-1/2 m-auto">
@@ -8,14 +8,19 @@
             <div class="mb-3">
                 <label for="image">Imagem do evento:</label>
                 <input type="file" id="image" name="image"
-                       class="w-full border border-gray rounded-md p-2 outline-none focus:border-gray-700 my-1"
-                       placeholder="Nome do Evento">
+                       class="w-full border border-gray rounded-md p-2 outline-none focus:border-gray-700 my-1">
             </div>
             <div class="mb-3">
                 <label for="title">Evento:</label>
                 <input type="text" id="title" name="title"
                        class="w-full border border-gray rounded-md p-2 outline-none focus:border-gray-700 my-1"
                        placeholder="Nome do Evento">
+            </div>
+            <div class="mb-3">
+                <label for="title">Data:</label>
+                <input type="date" id="date" name="date"
+                       class="w-full border border-gray rounded-md p-2 outline-none focus:border-gray-700 my-1"
+                       placeholder="Data do Evento">
             </div>
             <div class="mb-3">
                 <label for="city">Cidade:</label>

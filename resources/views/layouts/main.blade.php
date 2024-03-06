@@ -23,10 +23,23 @@
         </div>
         <ul class="hidden md:flex">
             <ul class="hidden md:flex">
-                <li class="px-4"><a class="text-gray-400 hover:text-blue-500" href="/">Eventos</a></li>
-                <li class="px-4"><a class="text-gray-400 hover:text-blue-500" href="/events/create">Criar Eventos</a></li>
-                <li class="px-4"><a class="text-gray-400 hover:text-blue-500" href="#">Entrar</a></li>
-                <li class="px-4"><a class="text-gray-400 hover:text-blue-500" href="#">Cadastrar</a></li>
+                <li class="px-3"><a class="text-gray-400 hover:text-blue-500" href="/">Eventos</a></li>
+                <li class="px-3"><a class="text-gray-400 hover:text-blue-500" href="/events/create">Criar Eventos</a>
+                </li>
+                @auth
+                    <li class="px-3"><a class="text-gray-400 hover:text-blue-500" href="#">Seus Eventos</a></li>
+                    <li class="px-3">
+                        <form action="/logout" method="post">
+                            @csrf
+                            <a class="text-gray-400 hover:text-blue-500" href="/logout"
+                               onclick="event.preventDefault();this.closest('form').submit()">Sair</a>
+                        </form>
+                    </li>
+                @endauth
+                @guest
+                    <li class="px-3"><a class="text-gray-400 hover:text-blue-500" href="/login">Entrar</a></li>
+                    <li class="px-3"><a class="text-gray-400 hover:text-blue-500" href="/register">Cadastrar</a></li>
+                @endguest
             </ul>
         </ul>
     </nav>
@@ -71,9 +84,9 @@
 </header>
 @if(session('msg'))
     <div class="w-full bg-green-200 text-green-500 p-3 flex justify-between items-center" id="msg-success">
-       <div>
-           {{ session('msg') }}
-       </div>
+        <div>
+            {{ session('msg') }}
+        </div>
         <div class="flex ps-[300px]">
             <button onclick="closeBox('msg-success')">X</button>
         </div>
