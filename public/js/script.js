@@ -42,6 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function closeBox(id) {
-    let box = document.querySelector(`#`+id);
-    box.className ='hidden';
+    let box = document.querySelector('#'+id);
+    box.classList.add('subir');
 }

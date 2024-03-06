@@ -1,0 +1,12 @@
+@keyframes subir {
+    from{
+        margin-top:0;
+
+    }to{
+    margin-top: -50px;
+         }
+}
+
+.subir{
+    animation: 1s subir forwards;
+}
