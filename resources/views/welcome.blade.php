@@ -16,25 +16,29 @@
         </h1>
         <p class="text-gray-500">Veja os próximos eventos</p>
     </div>
-        @if(count($events) > 0)
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center">
+    @if(count($events) > 0)
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center">
             @foreach($events as $event)
-                <div class="border border-gray rounded-md mb-5">
-                    <img src="{{asset('img/imagem-evento.jpg')}}" class="rounded-t-md max-h-[150px] w-full">
-                    <div class="p-3">
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-md w-[25%] h-64">
+                    <div class="h-2/5 overflow-hidden">
+                        <img src="{{ asset("img/events/$event->image") }}" alt="Event Image"
+                             class="object-cover w-full h-full">
+                    </div>
+                    <div class="pt-4 px-4">
                         <p class="text-sm text-gray-400">12/12/12</p>
                         <h5 class="text-xl mb-2">{{$event->title}}</h5>
                         <p class="text-gray-500">X participantes</p>
                         <div class="my-3">
-                            <a class="px-5 py-2 bg-blue-500 rounded-md text-white hover:bg-blue-700 ">Saiba mais</a>
+                            <a class="px-5 py-2 bg-blue-500 rounded-md text-white hover:bg-blue-700 " href="/event/{{$event->id}}">Saiba mais</a>
                         </div>
                     </div>
                 </div>
             @endforeach
-        @else
-            <div class="flex justify-center items-center p-8">
-                <p class="text-3xl">Nenhum evento no momento !!</p>
-            </div>
-        @endif
-    </div>
-@endsection
+            @else
+                <div class="flex justify-center items-center p-8">
+                    <p class="text-3xl">Nenhum evento no momento !!</p>
+                </div>
+            @endif
+        </div>
+        @endsection

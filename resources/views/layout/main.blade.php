@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="min-h-screen flex flex-col">
-<header>
-    <nav class="p-5 flex justify-between items-center bg-gray-700 text-white border-b border-gray-200">
+<header class="z-30">
+    <nav class="p-5 flex justify-between items-center bg-gray-700 text-white border-b border-gray-200 ">
         <a class="text-3xl leading-none" href="/">
             Agenda de eventos
         </a>
@@ -49,11 +50,11 @@
                 <ul>
                     <li class="mb-1">
                         <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                           href="#">Eventos</a>
+                           href="/">Eventos</a>
                     </li>
                     <li class="mb-1">
                         <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                           href="#">Criar Eventos</a>
+                           href="/events/create">Criar Eventos</a>
                     </li>
                     <li class="mb-1">
                         <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
@@ -69,7 +70,7 @@
     </div>
 </header>
 @if(session('msg'))
-    <div class="w-full bg-green-200 text-green-500 p-3 flex justify-between items-center " id="msg-success">
+    <div class="w-full bg-green-200 text-green-500 p-3 flex justify-between items-center" id="msg-success">
        <div>
            {{ session('msg') }}
        </div>
@@ -78,7 +79,7 @@
         </div>
     </div>
 @endif
-<main class="p-5 flex-1">
+<main class="px-32 py-5 flex-1">
     @yield('content')
 </main>
 
