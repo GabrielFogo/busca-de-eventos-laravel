@@ -37,7 +37,28 @@
                           class="w-full border border-gray rounded-md p-2 outline-none focus:border-gray-700 my-1"
                           placeholder="O que vai acontecer no evento ?"></textarea>
             </div>
-            <input type="submit" class="px-5 py-2 bg-blue-500 rounded-md text-white hover:bg-blue-700" value="Cadastrar"/>
+            <div class="mb-3 flex flex-col">
+                <label class="mb-2">Adicione itens de infraestrutura:</label>
+                <div class="mb-1">
+                    <input type="checkbox" name="items[]" value="Open Food" class="form-checkbox mr-2">
+                    <span>Open food</span>
+                </div>
+                <div class="mb-1">
+                    <input type="checkbox" name="items[]" value="Open Bar" class="form-checkbox mr-2">
+                    <span>Open bar</span>
+                </div>
+                <div class="mb-1">
+                    <input type="checkbox" name="items[]" value="Cadeiras" class="form-checkbox mr-2">
+                    <span>Cadeiras</span>
+                </div>
+                <div class="mb-1">
+                    <input type="checkbox" name="items[]" value="Palco" class="form-checkbox mr-2">
+                    <span>Palco</span>
+                </div>
+            </div>
+
+            <input type="submit" class="px-5 py-2 bg-blue-500 rounded-md text-white hover:bg-blue-700"
+                   value="Cadastrar"/>
         </form>
     </div>
 @endsection

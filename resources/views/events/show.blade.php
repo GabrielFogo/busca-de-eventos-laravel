@@ -25,7 +25,15 @@
                     <strong class="text-gray-800">Data do evento:</strong>
                 </li>
             </ul>
-            <button class="px-5 py-2 bg-blue-500 rounded-md text-white hover:bg-blue-700">Participar</button>
+            <h1 class="text-2xl font-bold mb-4">O evento contara com:</h1>
+            <ul class="mb-4">
+                @foreach($event->items as $item)
+                    <li>
+                        <strong class="text-gray-800">{{$item}}</strong>
+                    </li>
+                @endforeach
+            </ul>
+            <button class="px-5 py-2 bg-blue-500 rounded-md text-white hover:bg-blue-700">Confirmar presença</button>
         </div>
     </div>
 @endsection
