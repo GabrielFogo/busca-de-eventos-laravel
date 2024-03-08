@@ -18,3 +18,4 @@ Route::get('/events/create',[EventController::class, 'create'])->middleware('aut
 Route::get('/event/{id}',[EventController::class,'show']);
 Route::get('/dashboard',[EventController::class, 'dashboard'])->middleware('auth');
 Route::post('/events',[EventController::class, 'store']);
+Route::delete('events/{id}',[EventController::class,'destroy']);

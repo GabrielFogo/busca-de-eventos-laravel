@@ -17,9 +17,13 @@
                 <td class="px-6 py-4 whitespace-nowrap">{{$loop->index + 1}}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{$eventUser->title}}</td>
                 <td class="px-6 py-4 whitespace-nowrap">0</td>
-                <td class="px-6 py-4 whitespace-nowrap">
+                <td class="px-6 py-4 whitespace-nowrap flex gap-4">
                     <a href="#" class="text-indigo-600 hover:text-indigo-900">Editar</a>
-                    <a href="#" class="text-red-600 hover:text-red-900 ml-4">Deletar</a>
+                    <form action="/events/{{$eventUser->id}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-red-600 hover:text-red-900">Deletar</button>
+                    </form>
                 </td>
             </tr>
         @endforeach
