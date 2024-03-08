@@ -27,7 +27,7 @@
                 <li class="px-3"><a class="text-gray-400 hover:text-blue-500" href="/events/create">Criar Eventos</a>
                 </li>
                 @auth
-                    <li class="px-3"><a class="text-gray-400 hover:text-blue-500" href="#">Seus Eventos</a></li>
+                    <li class="px-3"><a class="text-gray-400 hover:text-blue-500" href="/dashboard">Meus Eventos</a></li>
                     <li class="px-3">
                         <form action="/logout" method="post">
                             @csrf
@@ -92,7 +92,7 @@
         </div>
     </div>
 @endif
-<main class="px-32 py-5 flex-1">
+<main class="px-5 md:px-32 py-5 flex-1">
     @yield('content')
 </main>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use App\Models\Events;
 use Illuminate\Http\Request;
@@ -12,12 +13,9 @@ class EventController extends Controller
     public function index(): View
     {
         $search = request('search');
-        if ($search)
-        {
-           $events = Events::where([['title','like', "%$search%"]])->get();
-        }
-        else
-        {
+        if ($search) {
+            $events = Events::where([['title', 'like', "%$search%"]])->get();
+        } else {
             $events = Events::all();
         }
         return view('welcome', ['events' => $events, 'search' => $search]);
@@ -49,6 +47,8 @@ class EventController extends Controller
             $event->image = $imageName;
         }
 
+        $user = auth()->user();
+        $event->user_id = $user->id;
         $event->save();
         return redirect('/')->with('msg', 'Evento criado com sucesso');
     }
@@ -56,7 +56,14 @@ class EventController extends Controller
     public function show($id): View
     {
         $event = Events::findOrFail($id);
+        $eventOwner = User::where('id', $event->user_id)->first()->toArray();
+        return view('events/show', ['event' => $event, 'eventOwner' => $eventOwner]);
+    }
 
-        return view('events/show', ['event' => $event]);
+    public function dashboard() : View
+    {
+        $authUser = auth()->user();
+        $eventsUser = $authUser->events;
+        return view('events/dashboard',['eventsUser'=>$eventsUser]);
     }
 }
