@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use App\Models\Events;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -70,6 +71,30 @@ class EventController extends Controller
     public function destroy($id)
     {
         Events::where('id', $id)->first()->delete();
-        return redirect('/dashboard')->with('msg','Evento excluido com sucesso');
+        return redirect('/dashboard')->with('msg', 'Evento excluido com sucesso');
+    }
+
+    public function edit($id)
+    {
+        $editEvent = Events::findOrFail($id);
+        $date = Carbon::parse($editEvent->date);
+        return view('events/edit', ['editEvent'=>$editEvent, 'date'=>$date]);
+    }
+
+    public function update(Request $request)
+    {
+        $data = $request->all();
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $requestImage = $request->image;
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime('now') . '.' . $extension);
+
+            $requestImage->move(public_path('img/events'), $imageName);
+
+           $data['image'] = $imageName;
+        }
+        Events::findOrFail($request->id)->update($data);
+        return redirect('/dashboard')->with('msg', 'Evento editado com sucesso');
     }
 }

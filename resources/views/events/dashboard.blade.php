@@ -18,7 +18,7 @@
                 <td class="px-6 py-4 whitespace-nowrap">{{$eventUser->title}}</td>
                 <td class="px-6 py-4 whitespace-nowrap">0</td>
                 <td class="px-6 py-4 whitespace-nowrap flex gap-4">
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                    <a href="/events/edit/{{$eventUser->id}}" class="text-indigo-600 hover:text-indigo-900">Editar</a>
                     <form action="/events/{{$eventUser->id}}" method="post">
                         @csrf
                         @method('DELETE')
